@@ -209,7 +209,7 @@ def phonedef():
     go.place(x=200,y=13)
 
 style = ttk.Style(root)
-root.tk.call('source', 'src1/azure dark.tcl')
+root.tk.call('source', 'src1/azure.tcl')
 style.theme_use('azure')
 style.configure("Accentbutton", foreground='white')
 style.configure("Togglebutton", foreground='white')
