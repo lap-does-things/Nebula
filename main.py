@@ -4,7 +4,7 @@ from tkinter import *
 import tkinter.ttk as ttk
 
 
-#import для телеофна
+
 # если вы это видите, git работает. просто тест. ничего подозрительного... пока что
 
 root = Tk()
