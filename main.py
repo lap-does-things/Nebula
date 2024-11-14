@@ -2,16 +2,11 @@ import os
 import sys
 from tkinter import *
 import tkinter.ttk as ttk
-
-
-
 # если вы это видите, git работает. просто тест. ничего подозрительного... пока что
-
 root = Tk()
 top_Frame = Frame(root, bg="#505050")
 top_Frame.place(x=0, y=0, anchor="nw", width=320, height=20)
 canvas = Canvas(root)
-
 class Grip:
     ''' Makes a window dragable. '''
     def __init__ (self, parent, disable=None, releasecmd=None) :
