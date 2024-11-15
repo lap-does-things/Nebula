@@ -1,0 +1,1 @@
+## Nebula - попытка Лэпа в алгоритмический питон [![Codacy Badge](https://app.codacy.com/project/badge/Grade/32c159f9f3b24b0d8ab34f0f46797796)](https://app.codacy.com/gh/lap-does-things/Nebula/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
